@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} {% endblock %} - gamehub</title>
+    </head>
+    <body>
+        <nav>
+            <a href="{{ url_for('auth.index') }}">auth-index</a>
+            <a href="#">Welcome</a>
+            <a href="#">Register</a>
+            <a href="#">Login</a>
+        </nav>
+        <hr>
+        <div class="content">
+            {% block content %} {% endblock %}
+        </div>
+    </body>
+</html>
