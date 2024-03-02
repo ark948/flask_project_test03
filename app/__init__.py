@@ -1,12 +1,18 @@
 from flask import Flask
+from flask_migrate import Migrate
 
 from config import Config
+from app.db import db
+
 
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
     # initialize extensions here
+    db.init_app(app=app)
+    migrate = Migrate(app=app, db=db)
+    migrate.init_app(app=app, db=db)
 
     # register blueprints here
     from app.main import bp as main_bp

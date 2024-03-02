@@ -1,3 +1,21 @@
 1. not going to use set FLASK_APP
 instead try manually to run the app
 result: works fine, so far no problem
+
+2. added database, added migrate object
+ran flask db init without setting FLASK_APP
+result: works fine, so far no problem. migrations folder was added successfully
+update: one small problem. forgot to register sqlalchemy db object with app -> main init -> db.init_app(app=app)
+issue was fixed easily. database file created successfully.
+
+3. tried to run flask db migrate -m "initial migration"
+problem: no migration script was created.
+problem was fixed by importing models at env.py of the alembic
+# target_metadata = mymodel.Base.metadata
+
+from app.models.user import User
+another problem: should i now delete migrate.init_db in main init?
+also migration script adjusted in password_hash field -> nullable attribute
+
+4. tried to run flask db upgrade
+result: seems to be no problem, needs to be tested later...
