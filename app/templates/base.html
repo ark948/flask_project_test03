@@ -6,12 +6,25 @@
     </head>
     <body>
         <nav>
+            {% if g.user %}
+                Username: {{ g.user['username'] }}
+                <a href="{{ url_for('auth.logout') }}">Logout</a>
+            {% else %}
+                Username: NOT LOGGED IN
+            {% endif %}
             <a href="{{ url_for('auth.index') }}">auth-index</a>
             <a href="#">Welcome</a>
             <a href="#">Register</a>
-            <a href="#">Login</a>
+            <a href="">Login</a>
         </nav>
         <hr>
+        <header>
+            {% block header %}
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+            {% endblock %}
+        </header>
         <div class="content">
             {% block content %} {% endblock %}
         </div>

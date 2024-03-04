@@ -19,3 +19,4 @@ also migration script adjusted in password_hash field -> nullable attribute
 
 4. tried to run flask db upgrade
 result: seems to be no problem, needs to be tested later...
+test data: user1 test@test.com 123
