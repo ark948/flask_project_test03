@@ -22,3 +22,5 @@ result: seems to be no problem, needs to be tested later...
 test data: user1 test@test.com 123
 user2 test2@test.com 1
 test3 test3@test.com 1
+
+5. flask-login requires user model to have some certain attributes implemented. this can be done manually or using the provided mixin class. also user loader function must be added

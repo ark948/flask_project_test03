@@ -6,6 +6,7 @@
         {{ form.csrf_token }}
         <p>{{ form.username.label }} {{ form.username(size=20) }}</p>
         <p>{{ form.password.label }} {{ form.password(size=30) }}</p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
         {% if form.username.errors %}
             <ul class="errors">
@@ -21,6 +22,9 @@
                 {% endfor %}
             </ul>
         {% endif %}
+        {% for error in form.remember_me.errors %}
+            {{ error }}
+        {% endfor %}
     </form>
 
 {% endblock %}
