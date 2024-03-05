@@ -4,19 +4,52 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.db import db
 from app.models.user import User
 from icecream import ic
-from app.auth.forms import LoginForm
+from app.auth.forms import LoginForm, RegisterForm
 import functools
 
 @bp.route('/')
 def index():
     return render_template('auth/index.html')
 
-@bp.route('/register')
+@bp.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('auth/register.html')
+    if g.user != None:
+        message = "You have already registered."
+        flash(message=message)
+        return redirect(url_for('main.index'))
+    form = RegisterForm()
+    message = None
+    if form.validate_on_submit():
+        try:
+            username = form.username.data
+            email = form.username.data
+            password = form.password.data
+            confirm = form.confirm.data
+            if password != confirm:
+                message = "Passwords do not match. Try again."
+                raise Exception
+            new_user = User(username=username, email=email, password_hash=generate_password_hash(password))
+            try:
+                db.session.add(new_user)
+                db.session.commit()
+                message = "Registration successful."
+                flash(message=message)
+                return redirect(url_for('auth.login'))
+            except Exception as new_user_insertioin_error:
+                ic(new_user_insertioin_error)
+                message = "An error occurred during registration, or this username/email is already taken."
+        except Exception as registration_error:
+            ic(registration_error)
+            return redirect(url_for('auth.register'))
+        flash(message=message)
+    return render_template('auth/register.html', form=form)
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
+    if g.user != None:
+        message = "You are already logged in."
+        flash(message=message)
+        return redirect(url_for('main.index'))
     form = LoginForm()
     message = None
     if form.validate_on_submit():
