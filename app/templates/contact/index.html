@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h3>Welcome to contact manager</h3><a href="{{ url_for('contact.new') }}">> New</a>
+
+    {% for item in contact_list %}
+        <p>
+            {{ loop.index }}.
+            {{ item.name }}
+            {{ item.number }}
+            {{ item.address }}
+            {{ item.note }}
+        </p>
+    {% endfor %}
+
+    <p>
+        {% from 'macros/_formhelper.html' import render_field %}
+        
+    </p>
+
+{% endblock %}

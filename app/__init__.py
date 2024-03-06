@@ -27,7 +27,9 @@ def create_app(config_class=Config):
 
     from app.errors import bp as errors_bp
     app.register_blueprint(errors_bp)
-    errors_bp.template_folder='errors'
+
+    from app.contact import bp as contact_bp
+    app.register_blueprint(contact_bp)
 
     # shell context moved
 
