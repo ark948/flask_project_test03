@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h3>Welcome to contact manager</h3><a href="{{ url_for('contact.new') }}">> New</a>
+    <h3>Welcome to contact manager</h3>
 
     {% for item in contact_list %}
         <p>
@@ -14,9 +14,43 @@
         </p>
     {% endfor %}
 
+    <hr>
     <p>
-        {% from 'macros/_formhelper.html' import render_field %}
-        
+        <br>
+        Use the following form to add new contact:
+        <a href="#">> New</a>
+        <form method="post">
+            {{ new_form.hidden_tag() }}
+            <p>name:
+                {{ new_form.name }}
+                {% for error in new_form.name.errors %}
+                {{ error }}
+                {% endfor %}
+            </p>
+            <p>number:
+                {{ new_form.number }}
+                {% for error in new_form.errors %}
+                {{ error }}
+                {% endfor %}
+            </p>
+            <p>address:
+                {{ new_form.address }}
+                {% for error in new_form.errors %}
+                {{ error }}
+                {% endfor %}
+            </p>
+            <p>note:
+                {{ new_form.note }}
+                {% for error in new_form.errors %}
+                {{ error }}
+                {% endfor %}
+            </p>
+            <p>
+                {{ new_form.submit() }}
+            </p>
+        </form>
     </p>
+    <br>
+    <p><a href="{{ url_for('contact.index') }}">Reload</a></p>
 
 {% endblock %}

@@ -11,25 +11,44 @@ from app.contact.forms import NewContactForm
 @bp.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    message = None
+    # trying a new approach on message flashing
+    # message will be put directly in flash
     new_contact_form = NewContactForm()
     try:
         select_stmt = select(Contact).where(Contact.user_id==current_user.id)
         result = db.session.scalars(select_stmt).all()
         if len(result) == 0:
-            message = "Your contact list is empty."
-            flash(message=message)
+            flash("Your contact list is empty.")
             contact_list = []
         else:
             contact_list = result
     except Exception as e:
         ic(e)
-        message = "An error occurred."
-        flash(message=message)
+        flash("An error has occurr")
         return redirect(url_for('contact.index'))
-    return render_template('contact/index.html', contact_list=contact_list, new_contact_form=new_contact_form)
+    if new_contact_form.validate_on_submit():
+        try:
+            contact_object = Contact(new_contact_form.name.data)
+            contact_object.number = new_contact_form.number.data
+            contact_object.address = new_contact_form.address.data
+            contact_object.note = new_contact_form.note.data
+            contact_object.user_id = current_user.id
+            try:
+                db.session.add(contact_object)
+                db.session.commit()
+            except Exception as contact_insertion_error:
+                ic(contact_insertion_error)
+                flash('contact insertion error')
+                return redirect(url_for('contact.index'))
+            flash("Successfully added new contact.")
+            return redirect(url_for('contact.index'))
+        except Exception as e:
+            ic(e)
+            flash("An error occurred in adding new contact.")
+            return redirect(url_for('contact.index'))
+    return render_template('contact/index.html', contact_list=contact_list, new_form=new_contact_form)
 
 @bp.route('/contact/new', methods=['GET', 'POST'])
 @login_required
-def new_contact():
-    return "Success"
+def new():
+    return ''
