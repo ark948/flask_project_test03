@@ -1,12 +1,11 @@
 from flask import render_template, request, redirect, url_for, session, flash, g
 from app.auth import bp
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.db import db
+from app import db, login_manager
 from app.models.user import User
 from icecream import ic
 from app.auth.forms import LoginForm, RegisterForm
 import functools
-from app.extensions import login_manager
 from flask_login import current_user, login_user, login_required, logout_user
 
 
@@ -16,12 +15,12 @@ def index():
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
-    if g.user != None:
+    message = None
+    if current_user.is_authenticated:
         message = "You have already registered."
         flash(message=message)
         return redirect(url_for('main.index'))
     form = RegisterForm()
-    message = None
     if form.validate_on_submit():
         try:
             username = form.username.data

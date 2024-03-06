@@ -2,5 +2,4 @@
 # Migrate from flask_migrate
 # Flask-Form
 # Flask-Login
-from flask_login import LoginManager
-login_manager = LoginManager()
+# NOTE: initialize extensions above the application factory

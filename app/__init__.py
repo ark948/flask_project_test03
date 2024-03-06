@@ -1,11 +1,13 @@
 from flask import Flask
-from flask_migrate import Migrate
-
 from config import Config
-from app.db import db
-from app.extensions import login_manager
-from app.models.user import User
+# from app.extensions import login_manager
 
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
+from flask_login import LoginManager
+login_manager = LoginManager()
+from flask_migrate import Migrate
+migrate = Migrate()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -13,7 +15,6 @@ def create_app(config_class=Config):
 
     # initialize extensions here
     db.init_app(app=app)
-    migrate = Migrate(app=app, db=db)
     migrate.init_app(app=app, db=db)
     login_manager.init_app(app)
 
@@ -24,12 +25,11 @@ def create_app(config_class=Config):
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
-    @app.shell_context_processor
-    def shell():
-        return {
-            "db": db,
-            "User": User,
-        }
+    from app.errors import bp as errors_bp
+    app.register_blueprint(errors_bp)
+    errors_bp.template_folder='errors'
+
+    # shell context moved
 
     @app.route('/test/')
     def test_page():
