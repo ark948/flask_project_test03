@@ -1,6 +1,6 @@
 from app.contact import bp
 from flask_login import login_required
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app.models.contact import Contact
 from sqlalchemy import select
 from flask_login import current_user
@@ -48,7 +48,16 @@ def index():
             return redirect(url_for('contact.index'))
     return render_template('contact/index.html', contact_list=contact_list, new_form=new_contact_form)
 
-@bp.route('/contact/new', methods=['GET', 'POST'])
+@bp.route('/contact/delete/<int:item_id>', methods=['GET', 'POST'])
 @login_required
-def new():
-    return ''
+def delete(item_id):
+    try:
+        stmt = select(Contact).where(Contact.id==item_id)
+        contact_object_to_delete = db.session.scalar(stmt)
+        db.session.delete(contact_object_to_delete)
+        db.session.commit()
+    except Exception as delete_error:
+        ic(delete_error)
+        flash("Error in deleting item.")
+        return redirect(url_for('contact.index'))
+    return redirect(url_for('contact.index'))
