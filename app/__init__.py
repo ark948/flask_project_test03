@@ -29,7 +29,7 @@ def create_app(config_class=Config):
     app.register_blueprint(errors_bp)
 
     from app.contact import bp as contact_bp
-    app.register_blueprint(contact_bp)
+    app.register_blueprint(contact_bp, url_prefix='/contact')
 
     # shell context moved
 

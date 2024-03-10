@@ -28,3 +28,28 @@ test3 test3@test.com 1
 6. make a .flaskenv file for flask's config vars, and a .env for app config vars.
 .flaskenv can added to source control
 .env should not because it contains prodcution deployment stuff
+
+git so far:
+git add -a
+git commit -m "message"
+git reset HEAD
+git checkout
+git reset --hard HEAD
+
+contact manager:
+add and delete are done.
+delete works fine but needs fixing, use must noe be able te manually enter the url and delete an entry
+edit remains to be implemented.
+
+after this, password recovery, simply with recovery code gets emailed to users, and password reset link will appear.
+after that login and registration captcha,
+after that admin panel.
+users sending tickets to admins.
+user email verification
+user accepting terms of services
+user profile and edit profile
+user contact entry list pagination
+
+do not use python, instead use flask shell
+
+VERY IMPORTANT: app project folder and main file must not have the same name. (no app and app.py)

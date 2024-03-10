@@ -13,6 +13,7 @@
             {{ item.note }}
             DB-id: >>{{ item.id }}<<
             <a href="{{ url_for('contact.delete', item_id=item.id) }}" onclick="return confirm('Delete entry permanently?')">[Delete]</a>
+            <a href="{{ url_for('contact.update', item_id=item.id) }}">[Edit]</a>
         </p>
     {% endfor %}
 

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>You can use this form to edit your contact. When you're done click on submit.</h3>
+
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>Name:
+        {{ form.name }}
+        {% for error in form.name.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+    <p>Number:
+        {{ form.number }}
+        {% for error in form.number.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+    <p>Address:
+        {{ form.address }}
+        {% for error in form.address.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+    <p>Note:
+        {{ form.note }}
+        {% for error in form.note.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+
+<br>
+<a href="{{ url_for('contact.index') }}">Back to Contact Manager</a>
+
+{% endblock %}
