@@ -8,14 +8,15 @@
         <nav>
             {% if current_user.is_authenticated %}
                 Username: -> {{ current_user.username }}
+                <a href="{{ url_for('auth.profile') }}">Profile</a>
                 <a href="{{ url_for('auth.logout') }}">Logout</a>
             {% else %}
                 Username: -> [Not logged in]
             {% endif %}
             <a href="{{ url_for('auth.index') }}">auth-index</a>
             Welcome
-            <a href="#">Register</a>
-            <a href="">Login</a>
+            <a href="{{ url_for('auth.register') }}">Register</a>
+            <a href="{{ url_for('auth.login') }}">Login</a>
             <a href="{{ url_for('main.index') }}">Main</a>
         </nav>
         <hr>

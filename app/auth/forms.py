@@ -14,3 +14,14 @@ class RegisterForm(FlaskForm):
     password = PasswordField('password', validators=[DataRequired(), EqualTo('confirm')])
     confirm = PasswordField('confirm', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class ProfileEditForm(FlaskForm):
+    username = StringField('username', validators=[DataRequired()])
+    email = EmailField('email', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+class PasswordChangeForm(FlaskForm):
+    password = PasswordField('password', validators=[DataRequired(), EqualTo('confirm')])
+    confirm = PasswordField('confirm', validators=[DataRequired()])
+    new_password = PasswordField('new', validators=[DataRequired()])
+    submit = SubmitField('Submit')

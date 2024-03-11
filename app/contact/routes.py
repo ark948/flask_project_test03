@@ -66,7 +66,7 @@ def delete(item_id):
         abort(401)
     return redirect(url_for('contact.index'))
 
-@bp.route('/contact/update/<int:item_id>', methods=['GET', 'POST'])
+@bp.route('/update/<int:item_id>', methods=['GET', 'POST'])
 @login_required
 def update(item_id):
     contact_item = Contact.query.filter_by(id=item_id).one()

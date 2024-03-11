@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login_manager
 from app.models.user import User
 from icecream import ic
-from app.auth.forms import LoginForm, RegisterForm
+from app.auth.forms import LoginForm, RegisterForm, ProfileEditForm, PasswordChangeForm 
 import functools
 from flask_login import current_user, login_user, login_required, logout_user
 
@@ -71,6 +71,59 @@ def login():
             message = "An error occurred. Please check your username/password and try again."
         flash(message=message)
     return render_template('auth/login.html', form=form)
+
+@bp.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    profileForm = ProfileEditForm(
+        username=current_user.username,
+        email=current_user.email
+    )
+    passwordForm = PasswordChangeForm()
+    return render_template('auth/profile.html', form1=profileForm, form2=passwordForm)
+
+@bp.route('/edit-profile', methods=['POST'])
+@login_required
+def edit_profile():
+    if request.form.validate():
+        ic("GOOD FORM")
+    ic(">[edit-profile] VIEW INVOKED.")
+    user = User.query.get(current_user.id)
+    try:
+        user.username = request.form['username']
+        user.email = request.form['email']
+        db.session.commit()
+        flash("Profile info updated successfully.")
+    except Exception as db_integrity_error:
+        ic(db_integrity_error)
+        flash('An error occurred. Most likely the username/email you entered is already taken.')
+    return redirect(url_for('auth.profile'))
+
+@bp.route('/change-password', methods=['POST'])
+@login_required
+def change_password():
+    ic(">[change-password] VIEW INVOKED.")
+    user = User.query.get(current_user.id)
+    try:
+        if request.form['password'] == request.form['confirm']:
+            if check_password_hash(user.password_hash, request.form['password']):
+                try:
+                    user.password_hash = generate_password_hash(request.form['new_password'])
+                    db.session.commit()
+                    flash("Password changed successfully.")
+                except Exception as e:
+                    ic(e)
+                    flash("Sorry, error occurred.")
+            else:
+                ic("Bad Hash")
+                flash("Incorrect password.")
+        else:
+            ic("ERROR")
+            flash("Passwords do not match.")
+    except Exception as e:
+        ic("line 120")
+        flash("Unknown error.")
+    return redirect(url_for('auth.profile'))
 
 @bp.route('/logout')
 @login_required
