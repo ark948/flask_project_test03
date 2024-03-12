@@ -4,19 +4,35 @@
 
     <h3>Welcome to contact manager</h3>
 
-    {% for item in contact_list %}
+    <h3>current page: {{ pagination.page }}</h3>
+    {% for item in pagination.items %}
         <p>
             {{ loop.index }}.
             {{ item.name }}
             {{ item.number }}
             {{ item.address }}
             {{ item.note }}
-            DB-id: >>{{ item.id }}<<
-            <a href="{{ url_for('contact.delete', item_id=item.id) }}" onclick="return confirm('Delete entry permanently?')">[Delete]</a>
-            <a href="{{ url_for('contact.update', item_id=item.id) }}">[Edit]</a>
+            DB-id: [{{ item.id }}]
+            <!-- <a href="{{ url_for('contact.delete', item_id=item.id) }}" onclick="return confirm('Delete entry permanently?')">[Delete]</a>
+            <a href="{{ url_for('contact.update', item_id=item.id) }}">[Edit]</a> -->
         </p>
     {% endfor %}
-
+    <br>
+    <div class="pagination">
+        {% if pagination.has_prev %}
+            <a href="{{ url_for('contact.index', page=pagination.prev_num) }}">{{ '<<<' }}</a>
+        {% endif %}
+        {% for number in pagination.iter_pages() %}
+            {% if pagination.page != number %}
+                <a href="{{ url_for('contact.index', page=number) }}">{{ number }}</a>
+            {% else %}
+                {{ number }}
+            {% endif %}
+        {% endfor %}
+        {% if pagination.has_next %}
+            <a href="{{ url_for('contact.index', page=pagination.next_num) }}">{{ '>>>' }}</a>
+        {% endif %}
+    </div>
     <hr>
     <p>
         <br>

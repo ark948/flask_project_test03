@@ -14,14 +14,17 @@ def index():
     # trying a new approach on message flashing
     # message will be put directly in flash
     new_contact_form = NewContactForm()
+    page = request.args.get('page', 1, type=int)
     try:
-        select_stmt = select(Contact).where(Contact.user_id==current_user.id)
-        result = db.session.scalars(select_stmt).all()
-        if len(result) == 0:
-            flash("Your contact list is empty.")
-            contact_list = []
-        else:
-            contact_list = result
+        # select_stmt = select(Contact).where(Contact.user_id==current_user.id)
+        # result = db.session.scalars(select_stmt).all()
+        # applying pagination
+        pagination = Contact.query.filter_by(user_id=current_user.id).paginate(page=page, per_page=10)
+        # if len(result) == 0:
+        #     flash("Your contact list is empty.")
+        #     contact_list = []
+        # else:
+        #     contact_list = result
     except Exception as e:
         ic(e)
         flash("An error has occurr")
@@ -46,7 +49,7 @@ def index():
             ic(e)
             flash("An error occurred in adding new contact.")
             return redirect(url_for('contact.index'))
-    return render_template('contact/index.html', contact_list=contact_list, new_form=new_contact_form)
+    return render_template('contact/index.html', pagination=pagination, new_form=new_contact_form)
 
 @bp.route('/contact/delete/<int:item_id>', methods=['GET', 'POST'])
 @login_required

@@ -47,7 +47,7 @@ after that admin panel.
 users sending tickets to admins.
 user email verification
 user accepting terms of services
-user profile and edit profile
+user profile and edit profile (done)
 user contact entry list pagination
 
 do not use python, instead use flask shell

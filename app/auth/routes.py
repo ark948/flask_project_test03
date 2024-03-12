@@ -61,7 +61,7 @@ def login():
             user = db.session.query(User).where(User.username==username).one()
             if check_password_hash(user.password_hash, password):
                 login_user(user, remember=form.remember_me.data)
-                message = "User successfully logged in."
+                message = "Successfully logged in."
                 flash(message=message)
                 return redirect(url_for('main.index'))
             else:
@@ -85,8 +85,6 @@ def profile():
 @bp.route('/edit-profile', methods=['POST'])
 @login_required
 def edit_profile():
-    if request.form.validate():
-        ic("GOOD FORM")
     ic(">[edit-profile] VIEW INVOKED.")
     user = User.query.get(current_user.id)
     try:
