@@ -16,15 +16,9 @@ def index():
     new_contact_form = NewContactForm()
     page = request.args.get('page', 1, type=int)
     try:
-        # select_stmt = select(Contact).where(Contact.user_id==current_user.id)
-        # result = db.session.scalars(select_stmt).all()
-        # applying pagination
         pagination = Contact.query.filter_by(user_id=current_user.id).paginate(page=page, per_page=10)
-        # if len(result) == 0:
-        #     flash("Your contact list is empty.")
-        #     contact_list = []
-        # else:
-        #     contact_list = result
+        if pagination.total == 0:
+            flash("Your list is empty.")
     except Exception as e:
         ic(e)
         flash("An error has occurr")
