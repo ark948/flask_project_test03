@@ -53,3 +53,5 @@ if not os.path.exists('logs'):
     app.logger.info('Microblog startup')
 
 7. Make sure debug is turned off in run.py, os variables, and in flaskenv file. otherwise this fake email server will not work.
+
+8. Later i will try to move this server to a python file.

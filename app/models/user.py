@@ -1,6 +1,9 @@
 from app import db, login_manager
 from flask_login import UserMixin
 from app.models.contact import Contact
+from time import time
+import jwt
+from flask import current_app
 
 class User(UserMixin, db.Model):
     __tablename__ = "user"
@@ -20,6 +23,21 @@ class User(UserMixin, db.Model):
 
     def __repr__(self) -> str:
         return f'<User {self.id}>'
+    
+    def get_reset_password_token(self, expires_in=600):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
+            current_app.config['SECRET_KEY'], algorithm='HS256')
+    
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            id = jwt.decode(token, current_app.config['SECRET_KEY'],
+                            algorithms=['HS256'])['reset_password']
+        except:
+            # returns None
+            return
+        return db.session.get(User, id)
 
 
 @login_manager.user_loader

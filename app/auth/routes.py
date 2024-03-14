@@ -4,9 +4,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login_manager
 from app.models.user import User
 from icecream import ic
-from app.auth.forms import LoginForm, RegisterForm, ProfileEditForm, PasswordChangeForm 
+from app.auth.forms import LoginForm, RegisterForm, ProfileEditForm, PasswordChangeForm, ResetPasswordRequestForm, ResetPasswordForm
 import functools
 from flask_login import current_user, login_user, login_required, logout_user
+from sqlalchemy import select
+from app.email import send_email, send_password_reset_email
 
 
 @bp.route('/')
@@ -129,6 +131,37 @@ def change_password():
         ic("line 120")
         flash("Unknown error.")
     return redirect(url_for('auth.profile'))
+
+@bp.route('/reset-password_request', methods=['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for("You have already logged in. If you can't remember your password, logout first and then use password reset link."))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        # DO NOT USE TRY AND CATCH TO CHECK IF A USER EXISTS OR NOT AS A SECURITY MEASURE
+        user = db.session.scalar(select(User).where(User.email == form.email.data))
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for the instructions to reset your password')
+        return redirect(url_for('main.index'))
+    return render_template('auth/reset_password_request.html', form=form)
+
+@bp.route('/rest_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        flash("You are already logged in. Can't remember? logout first.")
+        return redirect(url_for('main.index'))
+    user = User.verify_reset_password_token(token)
+    if not user:
+        flash("User not found.")
+        return redirect(url_for('main.index'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.password_hash = generate_password_hash(form.password.data)
+        db.session.commit()
+        flash("Password reset successful.")
+        return redirect(url_for('auth.login'))
+    return render_template('auth/reset_password.html', form=form)
 
 @bp.route('/logout')
 @login_required

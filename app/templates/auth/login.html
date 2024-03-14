@@ -26,5 +26,8 @@
             {{ error }}
         {% endfor %}
     </form>
-
+    <p>
+        Forgot your password?
+        <a href="{{ url_for('auth.reset_password_request') }}">Click here to recover</a>
+    </p>
 {% endblock %}
