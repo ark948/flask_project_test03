@@ -1,0 +1,55 @@
+logging in auth>login
+
+
+using aiosmtpd to print error emails instead of actually sending them:
+in a second terminal session and with venv activated:
+1. venv> pip install aiosmtpd
+
+2. add config vars for email to config.py class:
+    MAIL_SERVER = os.environ.get('MAIL_SERVER')
+    MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)
+    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS') is not None
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    ADMINS = ['your-email@example.com']
+
+3. add a smtphandler to app.logger object of flask, every flask app has a logger which uses the logger package:
+if not app.debug:
+    if app.config['MAIL_SERVER']:
+        auth = None
+        if app.config['MAIL_USERNAME'] or app.config['MAIL_PASSWORD']:
+            auth = (app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+        secure = None
+        if app.config['MAIL_USE_TLS']:
+            secure = ()
+        mail_handler = SMTPHandler(
+            mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
+            fromaddr='no-reply@' + app.config['MAIL_SERVER'],
+            toaddrs=app.config['ADMINS'], subject='Microblog Failure',
+            credentials=auth, secure=secure)
+        mail_handler.setLevel(logging.ERROR)
+        app.logger.addHandler(mail_handler)
+
+4. in the second terminal that was mentioned in step one:
+venv> aiosmtpd -n -c aiosmtpd.handlers.Debugging -l localhost:8025
+
+5. in the original terminal sessoin:
+venv> set MAIL_SERVER=localhost
+set MAIL_PORT=8025
+
+6. To add a file logger:
+#... (email logger)
+
+if not os.path.exists('logs'):
+        os.mkdir('logs')
+    file_handler = RotatingFileHandler('logs/microblog.log', maxBytes=10240,
+                                       backupCount=10)
+    file_handler.setFormatter(logging.Formatter(
+        '%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
+    file_handler.setLevel(logging.INFO)
+    app.logger.addHandler(file_handler)
+
+    app.logger.setLevel(logging.INFO)
+    app.logger.info('Microblog startup')
+
+7. Make sure debug is turned off in run.py, os variables, and in flaskenv file. otherwise this fake email server will not work.

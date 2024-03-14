@@ -12,6 +12,8 @@
             {{ (pagination.page - 1)*pagination.per_page + loop.index }}.
             {{ item.name }}
             {{ item.number }}
+            {{ item.address }}
+            {{ item.note }}
             
             <a href="{{ url_for('contact.delete', item_id=item.id) }}" onclick="return confirm('Delete entry permanently?')">[Delete]</a>
             <a href="{{ url_for('contact.update', item_id=item.id) }}">[Edit]</a>

@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session, flash, g
+from flask import render_template, request, redirect, url_for, session, flash, g, current_app
 from app.auth import bp
 from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login_manager
@@ -61,14 +61,17 @@ def login():
             user = db.session.query(User).where(User.username==username).one()
             if check_password_hash(user.password_hash, password):
                 login_user(user, remember=form.remember_me.data)
+                current_app.logger.info(f"User with id:{user.id} successfully logged in.")
                 message = "Successfully logged in."
                 flash(message=message)
                 return redirect(url_for('main.index'))
             else:
                 message = "Incorrect password"
+                current_app.logger.info("Incorrect password.")
         except Exception as error:
             ic(error)
             message = "An error occurred. Please check your username/password and try again."
+            current_app.logger.info(f"Failed login attempt.")
         flash(message=message)
     return render_template('auth/login.html', form=form)
 
@@ -87,14 +90,15 @@ def profile():
 def edit_profile():
     ic(">[edit-profile] VIEW INVOKED.")
     user = User.query.get(current_user.id)
-    try:
-        user.username = request.form['username']
-        user.email = request.form['email']
-        db.session.commit()
-        flash("Profile info updated successfully.")
-    except Exception as db_integrity_error:
-        ic(db_integrity_error)
-        flash('An error occurred. Most likely the username/email you entered is already taken.')
+    raise Exception
+    # try:
+    #     user.username = request.form['username']
+    #     user.email = request.form['email']
+    #     db.session.commit()
+    #     flash("Profile info updated successfully.")
+    # except Exception as db_integrity_error:
+    #     ic(db_integrity_error)
+    #     flash('An error occurred. Most likely the username/email you entered is already taken.')
     return redirect(url_for('auth.profile'))
 
 @bp.route('/change-password', methods=['POST'])
