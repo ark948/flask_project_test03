@@ -90,15 +90,18 @@ def profile():
 def edit_profile():
     ic(">[edit-profile] VIEW INVOKED.")
     user = User.query.get(current_user.id)
-    raise Exception
-    # try:
-    #     user.username = request.form['username']
-    #     user.email = request.form['email']
-    #     db.session.commit()
-    #     flash("Profile info updated successfully.")
-    # except Exception as db_integrity_error:
-    #     ic(db_integrity_error)
-    #     flash('An error occurred. Most likely the username/email you entered is already taken.')
+    # raise Exception (used to test error logging)
+    try:
+        if user.username == request.form['username'].strip() and user.email == request.form['email'].strip():
+            flash("No changes detected.")
+            return redirect(url_for('auth.profile'))
+        user.username = request.form['username']
+        user.email = request.form['email']
+        db.session.commit()
+        flash("Profile info updated successfully.")
+    except Exception as db_integrity_error:
+        ic(db_integrity_error)
+        flash('An error occurred. Most likely the username/email you entered is already taken.')
     return redirect(url_for('auth.profile'))
 
 @bp.route('/change-password', methods=['POST'])

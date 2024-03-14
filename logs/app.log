@@ -19,3 +19,6 @@ Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 93, in edit_profile
     raise Exception
 Exception
+2024-03-14 15:27:07,201 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 15:32:13,660 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 15:34:06,497 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
