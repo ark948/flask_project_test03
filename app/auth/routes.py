@@ -9,6 +9,7 @@ import functools
 from flask_login import current_user, login_user, login_required, logout_user
 from sqlalchemy import select
 from app.email import send_email, send_password_reset_email
+from urllib.parse import urlsplit
 
 
 @bp.route('/')
@@ -66,7 +67,11 @@ def login():
                 current_app.logger.info(f"User with id:{user.id} successfully logged in.")
                 message = "Successfully logged in."
                 flash(message=message)
-                return redirect(url_for('main.index'))
+                next_page = request.args.get('next')
+                # @login_required decorator helps with this feature
+                if not next_page or urlsplit(next_page).netloc != '':
+                    next_page = url_for('main.index')
+                return redirect(next_page)
             else:
                 message = "Incorrect password"
                 current_app.logger.info("Incorrect password.")

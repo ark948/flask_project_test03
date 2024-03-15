@@ -1,0 +1,4 @@
+since username field is unqie in user model, there can be only one "Administrator" user.
+if there is need for more admins, more usernames can be added to is_accessible method.
+
+problem 01: inaccessible callback may require next url arguemnt.

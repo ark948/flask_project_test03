@@ -11,6 +11,9 @@ from flask_migrate import Migrate
 migrate = Migrate()
 from flask_mail import Mail
 mail = Mail()
+from flask_admin import Admin
+from app.admin import AdminView
+admin = Admin(name='Admin Panel')
 
 
 def create_app(config_class=Config):
@@ -21,7 +24,9 @@ def create_app(config_class=Config):
     db.init_app(app=app)
     migrate.init_app(app=app, db=db)
     login_manager.init_app(app)
+    login_manager.login_view = 'auth.login'
     mail.init_app(app)
+    admin.init_app(app)
 
     # register blueprints here
     from app.main import bp as main_bp
@@ -42,6 +47,17 @@ def create_app(config_class=Config):
     def test_page():
         return '<h3>App factory test</h3>'
     
+    # Admin views, to be moved to a blueprint later
+    # moved to admin.py file, not a blueprint yet, did not work
+    from flask_admin.contrib.sqla import ModelView
+    from app.models.user import User
+    from app.models.contact import Contact
+    # admin.add_view(ModelView(User, db.session, endpoint='users_'))
+    # admin.add_view(ModelView(Contact, db.session, endpoint='contacts_'))
+    # admin = Admin(votr, name='Dashboard', index_view=AdminView(Topics, db.session, url='/admin', endpoint='admin'))
+    admin.add_view(AdminView(User, db.session, endpoint='users_'))
+    admin.add_view(AdminView(Contact, db.session, endpoint='contacts_'))
+
     import logging
     from logging.handlers import SMTPHandler, RotatingFileHandler
 
