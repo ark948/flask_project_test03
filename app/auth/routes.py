@@ -26,14 +26,11 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         try:
-            username = form.username.data
-            email = form.username.data
-            password = form.password.data
-            confirm = form.confirm.data
-            if password != confirm:
+            if form.password.data != form.confirm.data:
                 message = "Passwords do not match. Try again."
                 raise Exception
-            new_user = User(username=username, email=email, password_hash=generate_password_hash(password))
+            new_user = User(username=form.username.data, email=form.email.data)
+            new_user.set_password(form.password.data)
             try:
                 db.session.add(new_user)
                 db.session.commit()

@@ -4,6 +4,7 @@ from app.models.contact import Contact
 from time import time
 import jwt
 from flask import current_app
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(UserMixin, db.Model):
     __tablename__ = "user"
@@ -15,11 +16,16 @@ class User(UserMixin, db.Model):
     contacts = db.relationship('Contact', backref='user')
 
 
-    def __init__(self, username, email, password_hash):
+    def __init__(self, username, email):
         self.username = username
         self.email = email
-        self.password_hash = password_hash
+        # self.password_hash = password_hash
 
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self) -> str:
         return f'<User {self.id}>'
