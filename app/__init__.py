@@ -14,6 +14,16 @@ mail = Mail()
 from flask_admin import Admin
 from app.admin import AdminView
 admin = Admin(name='Admin Panel')
+from flask_simple_captcha import CAPTCHA
+
+YOUR_CONFIG = {
+    'SECRET_CAPTCHA_KEY': 'LONG_KEY',
+    'CAPTCHA_LENGTH': 6,
+    'CAPTCHA_DIGITS': False,
+    'EXPIRE_SECONDS': 600,
+}
+
+Captcha = CAPTCHA(config=YOUR_CONFIG)
 
 
 def create_app(config_class=Config):
@@ -27,6 +37,7 @@ def create_app(config_class=Config):
     login_manager.login_view = 'auth.login'
     mail.init_app(app)
     admin.init_app(app)
+    Captcha.init_app(app)
 
     # register blueprints here
     from app.main import bp as main_bp

@@ -7,7 +7,7 @@ from icecream import ic
 class AdminView(ModelView):
     
     def is_accessible(self):
-        return current_user.is_authenticated and current_user.username == "Administrator"
+        return current_user.is_authenticated and current_user.username == "admin"
 
     def inaccessible_callback(self, name, **kwargs):
         # redirect to login page if user doesn't have access

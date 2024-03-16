@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, session, flash, g, current_app
 from app.auth import bp
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db, login_manager
+from app import db, login_manager, Captcha
 from app.models.user import User
 from icecream import ic
 from app.auth.forms import LoginForm, RegisterForm, ProfileEditForm, PasswordChangeForm, ResetPasswordRequestForm, ResetPasswordForm
@@ -20,31 +20,35 @@ def index():
 def register():
     message = None
     if current_user.is_authenticated:
-        message = "You have already registered."
-        flash(message=message)
+        flash("You have already registered.")
         return redirect(url_for('main.index'))
+    new_captcha_dict = Captcha.create()
     form = RegisterForm()
     if form.validate_on_submit():
-        try:
-            if form.password.data != form.confirm.data:
-                message = "Passwords do not match. Try again."
-                raise Exception
-            new_user = User(username=form.username.data, email=form.email.data)
-            new_user.set_password(form.password.data)
+        c_hash = request.form['captcha-hash']
+        c_text = request.form['captcha-text']
+        if Captcha.verify(c_text, c_hash):
             try:
-                db.session.add(new_user)
-                db.session.commit()
-                message = "Registration successful."
-                flash(message=message)
-                return redirect(url_for('auth.login'))
-            except Exception as new_user_insertioin_error:
-                ic(new_user_insertioin_error)
-                message = "An error occurred during registration, or this username/email is already taken."
-        except Exception as registration_error:
-            ic(registration_error)
-            return redirect(url_for('auth.register'))
+                if form.password.data != form.confirm.data:
+                    message = "Passwords do not match. Try again."
+                    raise Exception
+                new_user = User(username=form.username.data, email=form.email.data)
+                new_user.set_password(form.password.data)
+                try:
+                    db.session.add(new_user)
+                    db.session.commit()
+                    flash("Registration successful.")
+                    return redirect(url_for('auth.login'))
+                except Exception as new_user_insertioin_error:
+                    ic(new_user_insertioin_error)
+                    message = "An error occurred during registration, or this username/email is already taken."
+            except Exception as registration_error:
+                ic(registration_error)
+                return redirect(url_for('auth.register'))
+        else:
+            message="Incorrect captcha."
         flash(message=message)
-    return render_template('auth/register.html', form=form)
+    return render_template('auth/register.html', form=form, captcha=new_captcha_dict)
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -53,31 +57,37 @@ def login():
         message = "You are already logged in."
         flash(message=message)
         return redirect(url_for('main.index'))
+    new_captcha_dict = Captcha.create()
     form = LoginForm()
     if form.validate_on_submit():
-        try:
-            username = form.username.data
-            password = form.password.data
-            user = db.session.query(User).where(User.username==username).one()
-            if check_password_hash(user.password_hash, password):
-                login_user(user, remember=form.remember_me.data)
-                current_app.logger.info(f"User with id:{user.id} successfully logged in.")
-                message = "Successfully logged in."
-                flash(message=message)
-                next_page = request.args.get('next')
-                # @login_required decorator helps with this feature
-                if not next_page or urlsplit(next_page).netloc != '':
-                    next_page = url_for('main.index')
-                return redirect(next_page)
-            else:
-                message = "Incorrect password"
-                current_app.logger.info("Incorrect password.")
-        except Exception as error:
-            ic(error)
-            message = "An error occurred. Please check your username/password and try again."
-            current_app.logger.info(f"Failed login attempt.")
+        c_hash = request.form['captcha-hash']
+        c_text = request.form['captcha-text']
+        if Captcha.verify(c_text, c_hash):
+            try:
+                username = form.username.data
+                password = form.password.data
+                user = db.session.query(User).where(User.username==username).one()
+                if check_password_hash(user.password_hash, password):
+                    login_user(user, remember=form.remember_me.data)
+                    current_app.logger.info(f"User with id:{user.id} successfully logged in.")
+                    message = "Successfully logged in."
+                    flash(message=message)
+                    next_page = request.args.get('next')
+                    # @login_required decorator helps with this feature
+                    if not next_page or urlsplit(next_page).netloc != '':
+                        next_page = url_for('main.index')
+                    return redirect(next_page)
+                else:
+                    message = "Incorrect password"
+                    current_app.logger.info("Incorrect password.")
+            except Exception as error:
+                ic(error)
+                message = "An error occurred. Please check your username/password and try again."
+                current_app.logger.info(f"Failed login attempt.")
+        else:
+            message="Incorrect Captcha."
         flash(message=message)
-    return render_template('auth/login.html', form=form)
+    return render_template('auth/login.html', form=form, captcha=new_captcha_dict)
 
 @bp.route('/profile', methods=['GET', 'POST'])
 @login_required

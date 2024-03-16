@@ -1,0 +1,9 @@
+using flask-simple-captcha extension
+
+pip install flask-simple-captcha
+added config vars
+
+initiated captcha app in init
+
+trying to add captcha to login, successful
+added captcha to register as well.

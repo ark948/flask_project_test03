@@ -1,6 +1,12 @@
 {% extends 'admin/master.html' %}
 
 {% block body %}
-  <p>Hello world</p>
+  {% if current_user.is_accessible %}
+  user is is_accessible
+  {% elif current_user.is_authenticated %}
+  user is is_authenticated
+  {% else %}
+  <h2>You don't have admin access.</h2>
+  {% endif %}
   <a href="{{ url_for('main.index') }}">Back to main</a>
 {% endblock %}

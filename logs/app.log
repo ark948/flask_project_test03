@@ -1,18 +1,56 @@
-2024-03-15 20:27:27,483 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:27:53,275 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:28:09,682 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:28:24,435 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:31:38,170 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:97]
-2024-03-15 20:31:49,372 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:66]
-2024-03-15 20:37:00,049 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:97]
-2024-03-15 20:37:15,321 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:67]
-2024-03-15 21:37:18,970 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:97]
-2024-03-15 21:38:16,661 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:97]
-2024-03-15 21:38:38,813 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:97]
-2024-03-15 21:43:47,666 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:97]
-2024-03-15 21:43:58,050 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:67]
-2024-03-15 21:44:40,820 INFO: User with id:9 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:67]
-2024-03-15 21:56:08,351 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:97]
-2024-03-15 21:56:40,696 INFO: User with id:10 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:68]
-2024-03-15 21:59:20,475 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:97]
-2024-03-15 22:00:34,356 INFO: User with id:11 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:68]
+2024-03-16 15:20:09,100 ERROR: Exception on /auth/login [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 55, in login
+    new_captcha_dict = Captcha.create()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_simple_captcha\captcha_generation.py", line 108, in create
+    text = gen_captcha_text(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_simple_captcha\utils.py", line 157, in gen_captcha_text
+    return ''.join((random.choice(charpool) for _ in range(length)))
+                                                     ^^^^^^^^^^^^^
+TypeError: 'tuple' object cannot be interpreted as an integer
+2024-03-16 15:20:34,958 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:20:35,730 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:23:34,034 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:23:36,053 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:23:53,757 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:23:54,507 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:27:50,204 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:27:50,991 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:28:19,660 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:28:20,485 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:30:39,382 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:30:40,193 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:32:12,349 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:32:13,142 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:33:20,342 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:33:21,120 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:33:51,734 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:33:52,465 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:35:06,314 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:35:07,112 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:35:57,332 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:67]
+2024-03-16 15:50:18,278 INFO: Incorrect password. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:77]
+2024-03-16 15:50:30,600 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:67]
+2024-03-16 15:53:15,165 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:53:15,892 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:54:38,562 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:54:50,418 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:54:58,958 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:55:12,410 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:55:21,190 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:55:32,591 INFO: User with id:9 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
+2024-03-16 15:56:19,329 INFO: User with id:12 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]

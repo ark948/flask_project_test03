@@ -8,6 +8,7 @@
         <p>{{ form.password.label }} {{ form.password(size=30) }}</p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
+        {{ captcha_html(captcha)|safe }}
         {% if form.username.errors %}
             <ul class="errors">
                 {% for error in form.username.errors %}

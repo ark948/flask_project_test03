@@ -23,4 +23,4 @@ def make_shell_context():
 # i was right, this should have been removed.
 if __name__ == "__main__":
     print(os.environ.get('FLASK_DEBUG'))
-    app.run(debug=False)
+    app.run(debug=True)

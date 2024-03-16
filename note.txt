@@ -41,14 +41,17 @@ add and delete are done.
 delete works fine but needs fixing, use must noe be able te manually enter the url and delete an entry
 edit remains to be implemented.
 
-after this, password recovery, simply with recovery code gets emailed to users, and password reset link will appear.
+after this, password recovery, simply with recovery code gets emailed to users, and password reset link will appear. (done)
 after that login and registration captcha,
-after that admin panel.
+after that admin panel. (done)
 users sending tickets to admins.
 user email verification
 user accepting terms of services
 user profile and edit profile (done)
-user contact entry list pagination
+user contact entry list pagination fix (done)
+
+all flash messages in auth need refactoring
+admin panel needs to be heavily modified
 
 do not use python, instead use flask shell
 
