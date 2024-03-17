@@ -18,6 +18,8 @@ from flask_simple_captcha import CAPTCHA
 from flask_babel import Babel
 from flask_babel import lazy_gettext as _l
 babel = Babel()
+from flask_moment import Moment
+moment = Moment()
 
 YOUR_CONFIG = {
     'SECRET_CAPTCHA_KEY': 'LONG_KEY',
@@ -42,6 +44,7 @@ def create_app(config_class=Config):
     mail.init_app(app)
     admin.init_app(app)
     Captcha.init_app(app)
+    moment.init_app(app)
 
     def get_locale():
         # return request.accept_languages.best_match(app.config['LANGUAGES'])

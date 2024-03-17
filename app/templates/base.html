@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %} {% endblock %} - gamehub</title>
+        {{ moment.include_moment() }}
     </head>
     <body>
         <nav>
@@ -31,5 +32,6 @@
         <div class="content">
             {% block content %} {% endblock %}
         </div>
+        <h4>Current date and time: {{ moment().format('YYYY, h') }}</h4>
     </body>
 </html>

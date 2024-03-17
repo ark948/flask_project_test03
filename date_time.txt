@@ -1,0 +1,13 @@
+it would be useful to know the region and timezone of users.
+
+update the user model later.
+
+- add a last_seen or some sort of a time column to one of the models.
+
+test the flask-moment library by displaying the time.
+
+(in our server only utc is stored, and it will be convereted to the correct format when users from different regions bring it up.)
+
+as long as there is no time field in any of the models, i am not sure how we can test this thing.
+let's try adding a simple right now time to base.html...
+OK, it works.
