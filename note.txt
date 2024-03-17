@@ -42,13 +42,15 @@ delete works fine but needs fixing, use must noe be able te manually enter the u
 edit remains to be implemented.
 
 after this, password recovery, simply with recovery code gets emailed to users, and password reset link will appear. (done)
-after that login and registration captcha,
+after that login and registration captcha (done)
 after that admin panel. (done)
 users sending tickets to admins.
 user email verification
 user accepting terms of services
 user profile and edit profile (done)
 user contact entry list pagination fix (done)
+
+internationaliztion and localization next (higher priority)
 
 all flash messages in auth need refactoring
 admin panel needs to be heavily modified

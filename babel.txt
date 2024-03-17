@@ -1,0 +1,33 @@
+trying to add internationalization and localization i18n and l10n
+
+1. install flask-babel
+pip install flask-babel
+2. instanciate the flask-babel
+init file:
+def get_locale():
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+from flask_babel import Babel
+babel = Babel(app, locale_selctor=get_locale)
+3. add the get_locale function to instance
+4. add config vars
+    LANGUAGES = ['en', 'fa']
+5. mark everything that requires translation
+with _() or _l() (for lazy evaluation) or {{ _('') }}
+- add babel.cfg file:
+[python: app/**.py]
+[jinja2: app/templates/**.html]
+6. generate pot file
+venv) pybabel extract -F babel.cfg -k _l -o messages.pot .
+7. generate language catalog (po file) for each langauge using the pot file
+venv) pybabel init -i messages.pot -d app/translations -l fa
+8. editing the po files
+9. compiling the po files to mo for flask-babel to use
+pybabel compile -d app/translations
+- edit the get_locale function to change to fa:
+def get_locale():
+    # return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return 'fa'
+10. keep updating the po file (compile must be re-applied)
+- add more _() and _l() to different files
+- extract again:  pybabel extract -F babel.cfg -k _l -o messages.pot .
+- compile again (update): pybabel update -i messages.pot -d app/translations

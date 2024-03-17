@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from config import Config
 import os
 # from app.extensions import login_manager
@@ -15,6 +15,9 @@ from flask_admin import Admin
 from app.admin import AdminView
 admin = Admin(name='Admin Panel')
 from flask_simple_captcha import CAPTCHA
+from flask_babel import Babel
+from flask_babel import lazy_gettext as _l
+babel = Babel()
 
 YOUR_CONFIG = {
     'SECRET_CAPTCHA_KEY': 'LONG_KEY',
@@ -35,9 +38,16 @@ def create_app(config_class=Config):
     migrate.init_app(app=app, db=db)
     login_manager.init_app(app)
     login_manager.login_view = 'auth.login'
+    login_manager.login_message = _l('Please login to access this page.')
     mail.init_app(app)
     admin.init_app(app)
     Captcha.init_app(app)
+
+    def get_locale():
+        # return request.accept_languages.best_match(app.config['LANGUAGES'])
+        return 'fa'
+    
+    babel.init_app(app, locale_selector=get_locale)
 
     # register blueprints here
     from app.main import bp as main_bp

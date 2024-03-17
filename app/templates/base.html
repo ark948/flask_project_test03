@@ -7,7 +7,7 @@
     <body>
         <nav>
             {% if current_user.is_authenticated %}
-                Username: -> {{ current_user.username }}
+                {{ _('Username') }}: -> {{ current_user.username }}
                 <a href="{{ url_for('auth.profile') }}">Profile</a>
                 <a href="{{ url_for('auth.logout') }}">Logout</a>
             {% else %}
