@@ -7,6 +7,7 @@ from flask_login import current_user
 from app import db
 from icecream import ic
 from app.contact.forms import NewContactForm, UpdateContactForm
+import datetime
 
 @bp.route('/index', methods=['GET', 'POST'])
 @login_required
@@ -30,6 +31,7 @@ def index():
             contact_object.address = new_contact_form.address.data
             contact_object.note = new_contact_form.note.data
             contact_object.user_id = current_user.id
+            contact_object.date_added = datetime.datetime.now()
             try:
                 db.session.add(contact_object)
                 db.session.commit()

@@ -1,8 +1,13 @@
-2024-03-14 19:40:29,578 INFO: Incorrect password. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
-2024-03-14 19:40:32,798 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:66]
-2024-03-15 17:24:28,579 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:84]
-2024-03-15 17:26:15,383 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:84]
-2024-03-15 17:26:16,287 ERROR: Exception on / [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+2024-03-15 17:49:00,664 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:91]
+2024-03-15 18:01:04,243 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:92]
+2024-03-15 18:04:28,450 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:91]
+2024-03-15 18:10:04,287 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:92]
+2024-03-15 18:18:27,137 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:92]
+2024-03-15 19:48:59,933 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:92]
+2024-03-15 20:08:29,614 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:93]
+2024-03-15 20:12:04,507 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+2024-03-15 20:12:51,099 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+2024-03-15 20:12:53,533 ERROR: Exception on /admin/ [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
 Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
     response = self.full_dispatch_request()
@@ -16,9 +21,18 @@ Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\app\main\routes.py", line 6, in index
-    return render_template('main/index.html')
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 69, in inner
+    return self._run_view(f, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 369, in _run_view
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 455, in index
+    return self.render(self._template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 308, in render
+    return render_template(template, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
     return _render(app, template, context)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -29,21 +43,33 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "C:\Users\Arman\Documents\flask_project\app\templates\main\index.html", line 1, in top-level template code
-    {% extends 'base.html' %}
-  File "C:\Users\Arman\Documents\flask_project\app\templates\base.html", line 21, in top-level template code
-    <a href="{{ url_for('main.admin') }}">Admin</a>
+  File "C:\Users\Arman\Documents\flask_project\app\templates\admin\index.html", line 1, in top-level template code
+    {% extends 'admin/master.html' %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1074, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1063, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\werkzeug\routing\map.py", line 919, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'main.admin'. Did you mean 'main.index' instead?
-2024-03-15 17:26:16,592 ERROR: Exception on / [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\master.html", line 1, in top-level template code
+    {% extends admin_base_template %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 35, in top-level template code
+    {% block page_body %}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 42, in block 'page_body'
+    {% block main_menu %}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 44, in block 'main_menu'
+    {{ layout.menu() }}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\runtime.py", line 777, in _invoke
+    rv = self._func(*arguments)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\layout.html", line 55, in template
+    {%- if item.is_accessible() and item.is_visible() -%}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\menu.py", line 126, in is_accessible
+    return self._view.is_accessible()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\admin.py", line 13, in is_accessible
+    return session.get('user').username == 'Administrator'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'username'
+2024-03-15 20:13:32,852 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+2024-03-15 20:13:35,194 ERROR: Exception on /admin/ [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
 Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
     response = self.full_dispatch_request()
@@ -57,9 +83,18 @@ Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\app\main\routes.py", line 6, in index
-    return render_template('main/index.html')
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 69, in inner
+    return self._run_view(f, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 369, in _run_view
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 455, in index
+    return self.render(self._template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 308, in render
+    return render_template(template, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
     return _render(app, template, context)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -70,63 +105,30 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "C:\Users\Arman\Documents\flask_project\app\templates\main\index.html", line 1, in top-level template code
-    {% extends 'base.html' %}
-  File "C:\Users\Arman\Documents\flask_project\app\templates\base.html", line 21, in top-level template code
-    <a href="{{ url_for('main.admin') }}">Admin</a>
+  File "C:\Users\Arman\Documents\flask_project\app\templates\admin\index.html", line 1, in top-level template code
+    {% extends 'admin/master.html' %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1074, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1063, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\werkzeug\routing\map.py", line 919, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'main.admin'. Did you mean 'main.index' instead?
-2024-03-15 17:26:36,500 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:84]
-2024-03-15 17:26:37,100 ERROR: Exception on / [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
-Traceback (most recent call last):
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\app\main\routes.py", line 6, in index
-    return render_template('main/index.html')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 131, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "C:\Users\Arman\Documents\flask_project\app\templates\main\index.html", line 1, in top-level template code
-    {% extends 'base.html' %}
-  File "C:\Users\Arman\Documents\flask_project\app\templates\base.html", line 21, in top-level template code
-    <a href="{{ url_for('admin') }}">Admin</a>
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\master.html", line 1, in top-level template code
+    {% extends admin_base_template %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1074, in url_for
-    return self.handle_url_build_error(error, endpoint, values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1063, in url_for
-    rv = url_adapter.build(  # type: ignore[union-attr]
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\werkzeug\routing\map.py", line 919, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'admin'. Did you mean 'admin.index' instead?
-2024-03-15 17:27:03,256 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:84]
-2024-03-15 17:32:20,979 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:89]
-2024-03-15 17:35:49,339 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:91]
-2024-03-15 17:46:07,979 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:87]
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 35, in top-level template code
+    {% block page_body %}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 42, in block 'page_body'
+    {% block main_menu %}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 44, in block 'main_menu'
+    {{ layout.menu() }}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\runtime.py", line 777, in _invoke
+    rv = self._func(*arguments)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\layout.html", line 55, in template
+    {%- if item.is_accessible() and item.is_visible() -%}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\menu.py", line 126, in is_accessible
+    return self._view.is_accessible()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\admin.py", line 14, in is_accessible
+    return current_user.username == 'Administrator'
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUserMixin' object has no attribute 'username'
+2024-03-15 20:15:15,392 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+2024-03-15 20:18:05,016 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]

@@ -6,7 +6,6 @@
     <h3>Total number of items: {{ pagination.total }}</h3>
     <h3>Total number of pages: {{ pagination.pages }}</h3>
     <h3>Current page: {{ pagination.page }}</h3>
-
     {% for item in pagination.items %}
         <p>
             {{ (pagination.page - 1)*pagination.per_page + loop.index }}.
@@ -14,7 +13,11 @@
             {{ item.number }}
             {{ item.address }}
             {{ item.note }}
-            
+            {% if item.date_added %}
+            [Date Added: {{ item.date_added.strftime("%y-%B-%d--%H:%M") }}]
+            {% else %}
+            Added some time ago.
+            {% endif %}
             <a href="{{ url_for('contact.delete', item_id=item.id) }}" onclick="return confirm('Delete entry permanently?')">[Delete]</a>
             <a href="{{ url_for('contact.update', item_id=item.id) }}">[Edit]</a>
          </p>

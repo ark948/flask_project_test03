@@ -1,0 +1,88 @@
+2024-03-14 14:48:02,369 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 14:48:09,733 ERROR: Exception on /auth/edit-profile [POST] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 93, in edit_profile
+    raise Exception
+Exception
+2024-03-14 15:27:07,201 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 15:32:13,660 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 15:34:06,497 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 15:50:06,036 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 15:54:27,745 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 16:32:39,461 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 19:18:21,845 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 19:18:50,238 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:66]
+2024-03-14 19:19:09,293 ERROR: Exception on /auth/reset-password_request [POST] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 144, in reset_password_request
+    send_password_reset_email(user)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'send_password_reset_email' is not defined
+2024-03-14 19:20:54,793 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 19:21:05,133 ERROR: Exception on /auth/reset-password_request [POST] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 144, in reset_password_request
+    send_password_reset_email(user)
+  File "C:\Users\Arman\Documents\flask_project\app\email.py", line 16, in send_password_reset_email
+    token = user.get_reset_password_token()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'get_reset_password_token'
+2024-03-14 19:22:26,795 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
+2024-03-14 19:23:43,921 ERROR: Exception on /auth/rest_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNldF9wYXNzd29yZCI6MiwiZXhwIjoxNzEwNDMyMTU1LjAyMzcwMjl9.fuOiJ6Fug5b97tgPcbLD3Z8wY2ENG7TZ78oudKXCAVs [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 151, in reset_password
+    if current_app.is_authenticated:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Flask' object has no attribute 'is_authenticated'
+2024-03-14 19:24:25,771 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]

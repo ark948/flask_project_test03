@@ -1,0 +1,7 @@
+let's try the following:
+venv> flask db migrate -m "Added date_added to contact model"
+no problem, the newly added field was recognized, let's check the migration script...
+ok forgot to add the nullable=False, so the script is now nullable=True. But i don't think it's going to be problematic.
+let's try running upgrade.
+seems ok so far. let's test it in shell
+shell looks good. now let's test it in actual app

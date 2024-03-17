@@ -1,4 +1,9 @@
 from app import db
+from sqlalchemy import DateTime
+import datetime
+
+# display the date_added as follows
+# x.strftime("%y-%B-%d--%H:%M")
 
 class Contact(db.Model):
     __tablename__ = 'contact'
@@ -7,6 +12,7 @@ class Contact(db.Model):
     number = db.Column(db.String(50))
     address = db.Column(db.String(256))
     note = db.Column(db.Text())
+    date_added = db.Column(DateTime, default=datetime.datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, name):
