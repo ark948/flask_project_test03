@@ -17,3 +17,5 @@ trying to add date_added field to contact... so it can later be converted to use
 successfully added date_added field to contact model and rendered it with desired format in template. 
 one small problem: all previous contact records that are now None cannot be properly displayed and trigger an error.
 successfully fixed this issue without deleting records. just added a conditional controller. check it in contact index template.
+
+now i can try converting this field to different timezones, works good.

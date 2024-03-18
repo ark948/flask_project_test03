@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %} {% endblock %} - gamehub</title>
         {{ moment.include_moment() }}
+        {{ moment.lang(g.locale) }}
     </head>
     <body>
         <nav>
@@ -12,7 +13,7 @@
                 <a href="{{ url_for('auth.profile') }}">Profile</a>
                 <a href="{{ url_for('auth.logout') }}">Logout</a>
             {% else %}
-                Username: -> [Not logged in]
+                {{ _('Username') }}: -> [Not logged in]
             {% endif %}
             <a href="{{ url_for('auth.index') }}">auth-index</a>
             Welcome

@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, g
 from config import Config
 import os
 # from app.extensions import login_manager
@@ -65,7 +65,15 @@ def create_app(config_class=Config):
     from app.contact import bp as contact_bp
     app.register_blueprint(contact_bp, url_prefix='/contact')
 
+    from app.cli import bp as cli_bp
+    app.register_blueprint(cli_bp)
+
     # shell context moved
+
+    @app.before_request
+    def before_request():
+        # current user last seen time can be commited to database here
+        g.locale = str(get_locale())
 
     @app.route('/test/')
     def test_page():

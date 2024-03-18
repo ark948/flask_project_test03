@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-17 15:19+0330\n"
+"POT-Creation-Date: 2024-03-18 14:19+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: app/__init__.py:41
+#: app/__init__.py:43
 msgid "Please login to access this page."
 msgstr ""
 
@@ -25,7 +25,7 @@ msgstr ""
 msgid "404 not found"
 msgstr ""
 
-#: app/templates/base.html:10
+#: app/templates/base.html:12 app/templates/base.html:16
 msgid "Username"
 msgstr ""
 

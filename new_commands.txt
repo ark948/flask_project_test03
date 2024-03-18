@@ -1,0 +1,21 @@
+flask translate init LANG (add new language)
+flask translate update (to update language repos)
+flask translate compile (to compile language repos)
+
+babel export (this step won't be shortcutted into command, because it makes the other commands available)
+
+cli script will delete the messages.pot file, apparently this file can be easily generated again
+
+to add new language:
+venv> flask translate init <langauge-code>
+
+to update all the langauges after making changes to the _() and _l() langauge markers:
+venv> flask translate update
+
+to compile langauges after updating the translation files:
+flask translate compile
+
+let's test this by adding another small translation to base.html (Username in logged out)
+works good. 
+One very important notice:
+if two marked strings are equal in a template, they both will be next to placed next to each other in pot file.
