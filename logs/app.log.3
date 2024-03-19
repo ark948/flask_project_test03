@@ -1,4 +1,4 @@
-2024-03-15 20:18:07,277 ERROR: Exception on /admin/ [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+2024-03-16 15:20:09,100 ERROR: Exception on /auth/login [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
 Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,128 +12,85 @@ Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 69, in inner
-    return self._run_view(f, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 369, in _run_view
-    return fn(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 455, in index
-    return self.render(self._template)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 308, in render
-    return render_template(template, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 131, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "C:\Users\Arman\Documents\flask_project\app\templates\admin\index.html", line 1, in top-level template code
-    {% extends 'admin/master.html' %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\master.html", line 1, in top-level template code
-    {% extends admin_base_template %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 35, in top-level template code
-    {% block page_body %}
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 42, in block 'page_body'
-    {% block main_menu %}
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 44, in block 'main_menu'
-    {{ layout.menu() }}
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\runtime.py", line 777, in _invoke
-    rv = self._func(*arguments)
-         ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\layout.html", line 55, in template
-    {%- if item.is_accessible() and item.is_visible() -%}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\menu.py", line 126, in is_accessible
-    return self._view.is_accessible()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\app\admin.py", line 13, in is_accessible
-    return login_manager.current_user.is_authenticated
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'LoginManager' object has no attribute 'current_user'
-2024-03-15 20:19:36,100 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:20:55,314 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:20:57,667 ERROR: Exception on /admin/ [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
-Traceback (most recent call last):
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 369, in _run_view
-    return fn(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 455, in index
-    return self.render(self._template)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 308, in render
-    return render_template(template, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 131, in _render
-    rv = template.render(context)
-         ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 1301, in render
-    self.environment.handle_exception()
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
-    raise rewrite_traceback_stack(source=source)
-  File "C:\Users\Arman\Documents\flask_project\app\templates\admin\index.html", line 1, in top-level template code
-    {% extends 'admin/master.html' %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\master.html", line 1, in top-level template code
-    {% extends admin_base_template %}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 35, in top-level template code
-    {% block page_body %}
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 42, in block 'page_body'
-    {% block main_menu %}
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 44, in block 'main_menu'
-    {{ layout.menu() }}
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\runtime.py", line 777, in _invoke
-    rv = self._func(*arguments)
-         ^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\layout.html", line 55, in template
-    {%- if item.is_accessible() and item.is_visible() -%}
-    ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\menu.py", line 126, in is_accessible
-    return self._view.is_accessible()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\app\admin.py", line 14, in is_accessible
-    return current_user['username'] == 'user2'
-           ~~~~~~~~~~~~^^^^^^^^^^^^
-TypeError: 'AnonymousUserMixin' object is not subscriptable
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 69, in inner
-    return self._run_view(f, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 371, in _run_view
-    return fn(cls=self, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^
-TypeError: AdminIndexView.index() got an unexpected keyword argument 'cls'
-2024-03-15 20:22:00,829 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:24:11,507 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:24:29,134 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:66]
-2024-03-15 20:25:19,346 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:25:51,388 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:26:27,296 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
-2024-03-15 20:26:54,307 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 55, in login
+    new_captcha_dict = Captcha.create()
+                       ^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_simple_captcha\captcha_generation.py", line 108, in create
+    text = gen_captcha_text(
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_simple_captcha\utils.py", line 157, in gen_captcha_text
+    return ''.join((random.choice(charpool) for _ in range(length)))
+                                                     ^^^^^^^^^^^^^
+TypeError: 'tuple' object cannot be interpreted as an integer
+2024-03-16 15:20:34,958 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:20:35,730 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:23:34,034 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:23:36,053 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:23:53,757 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:23:54,507 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:106]
+2024-03-16 15:27:50,204 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:27:50,991 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:28:19,660 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:28:20,485 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:30:39,382 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:30:40,193 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:32:12,349 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:32:13,142 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:33:20,342 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:33:21,120 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:33:51,734 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:33:52,465 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:35:06,314 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:35:07,112 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:35:57,332 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:67]
+2024-03-16 15:50:18,278 INFO: Incorrect password. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:77]
+2024-03-16 15:50:30,600 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:67]
+2024-03-16 15:53:15,165 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:53:15,892 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 15:54:38,562 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:54:50,418 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:54:58,958 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:55:12,410 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:55:21,190 INFO: Failed login attempt. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:86]
+2024-03-16 15:55:32,591 INFO: User with id:9 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
+2024-03-16 15:56:19,329 INFO: User with id:12 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
+2024-03-16 16:51:01,424 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 16:51:02,204 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:108]
+2024-03-16 16:51:19,901 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
+2024-03-16 20:42:51,533 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-16 20:42:52,356 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-16 20:46:08,504 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-16 20:46:09,384 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-16 20:48:15,460 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-16 20:48:16,303 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-17 15:20:10,040 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-17 15:20:10,909 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-17 15:21:17,606 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-17 15:21:18,466 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-17 15:21:34,711 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-17 15:21:35,667 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:118]
+2024-03-17 15:21:45,745 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
+2024-03-17 18:21:24,588 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:21:25,404 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:23:43,126 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:23:43,957 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:30:56,393 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:30:57,254 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:33:44,722 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:33:45,540 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:34:34,218 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 18:34:35,163 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:11:16,573 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:23:20,206 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:25:49,595 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:26:09,071 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:30:57,094 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:30:57,933 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:31:11,326 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
+2024-03-17 22:32:52,099 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:32:52,923 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:35:09,061 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:35:09,958 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:35:28,849 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:35:29,731 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]
+2024-03-17 22:35:47,404 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:121]

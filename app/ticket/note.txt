@@ -1,0 +1,10 @@
+added models. 3 in total
+adding models to env.py in migraitons folder, done
+trying to run migrations, first revision
+checking the migration script,
+too much to read...
+i'll just risk it.
+flask db upgrade
+trying to add 3 new models to admin interface, then test in flask shell
+forgot to register new models in context shell,
+adding ticket blueprint

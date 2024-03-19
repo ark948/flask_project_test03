@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    If you have encountered a problem, you may use this form to ask for help.
+    {% from "macros/_formhelpers.html" import render_field %}
+    <form method="post">
+        {{ form.csrf_token }}
+        <dl>
+            {{ render_field(form.category) }}
+            {{ render_field(form.subject, size=60) }}
+            {{ render_field(form.body, rows=15, cols=60) }}
+            {{ captcha_html(captcha)|safe }}
+            {{ render_field(form.submit) }}
+        </dl>
+    </form>
+    <p><a href="{{ url_for('ticket.new') }}">Reload</a></p>
+{% endblock %}

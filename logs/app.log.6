@@ -1,4 +1,13 @@
-2024-03-14 19:24:32,537 ERROR: Exception on /auth/rest_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNldF9wYXNzd29yZCI6MiwiZXhwIjoxNzEwNDMyMTU1LjAyMzcwMjl9.fuOiJ6Fug5b97tgPcbLD3Z8wY2ENG7TZ78oudKXCAVs [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+2024-03-15 17:49:00,664 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:91]
+2024-03-15 18:01:04,243 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:92]
+2024-03-15 18:04:28,450 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:91]
+2024-03-15 18:10:04,287 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:92]
+2024-03-15 18:18:27,137 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:92]
+2024-03-15 19:48:59,933 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:92]
+2024-03-15 20:08:29,614 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:93]
+2024-03-15 20:12:04,507 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+2024-03-15 20:12:51,099 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+2024-03-15 20:12:53,533 ERROR: Exception on /admin/ [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
 Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,86 +21,18 @@ Traceback (most recent call last):
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 164, in reset_password
-    return render_template('reset_password.html', form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 69, in inner
+    return self._run_view(f, *args, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\loaders.py", line 125, in load
-    source, filename, uptodate = self.get_source(environment, name)
-                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
-    return self._get_source_fast(environment, template)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: reset_password.html
-2024-03-14 19:25:26,929 ERROR: Exception on /auth/rest_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNldF9wYXNzd29yZCI6MiwiZXhwIjoxNzEwNDMyMTU1LjAyMzcwMjl9.fuOiJ6Fug5b97tgPcbLD3Z8wY2ENG7TZ78oudKXCAVs [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
-Traceback (most recent call last):
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 164, in reset_password
-    return render_template('email/reset_password.html', form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 149, in render_template
-    template = app.jinja_env.get_or_select_template(template_name_or_list)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 1010, in get_template
-    return self._load_template(name, globals)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 969, in _load_template
-    template = self.loader.load(self, name, self.make_globals(globals))
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\loaders.py", line 125, in load
-    source, filename, uptodate = self.get_source(environment, name)
-                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 65, in get_source
-    return self._get_source_fast(environment, template)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 99, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: reset_password.html
-2024-03-14 19:25:40,192 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
-2024-03-14 19:25:40,936 ERROR: Exception on /auth/rest_password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNldF9wYXNzd29yZCI6MiwiZXhwIjoxNzEwNDMyMTU1LjAyMzcwMjl9.fuOiJ6Fug5b97tgPcbLD3Z8wY2ENG7TZ78oudKXCAVs [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
-Traceback (most recent call last):
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\app\auth\routes.py", line 164, in reset_password
-    return render_template('email/reset_password.html', form=form)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 369, in _run_view
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 455, in index
+    return self.render(self._template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 308, in render
+    return render_template(template, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
     return _render(app, template, context)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -102,19 +43,92 @@ Traceback (most recent call last):
     self.environment.handle_exception()
   File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
     raise rewrite_traceback_stack(source=source)
-  File "C:\Users\Arman\Documents\flask_project\app\templates\email\reset_password.html", line 4, in top-level template code
-    <p>Dear {{ user.username }},</p>
+  File "C:\Users\Arman\Documents\flask_project\app\templates\admin\index.html", line 1, in top-level template code
+    {% extends 'admin/master.html' %}
     ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 485, in getattr
-    return getattr(obj, attribute)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-jinja2.exceptions.UndefinedError: 'user' is undefined
-2024-03-14 19:36:12,389 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
-2024-03-14 19:37:13,544 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:66]
-2024-03-14 19:37:26,694 INFO: Incorrect password. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
-2024-03-14 19:37:33,544 INFO: Incorrect password. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
-2024-03-14 19:37:37,297 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:66]
-2024-03-14 19:38:10,707 INFO: User with id:2 successfully logged in. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:66]
-2024-03-14 19:38:22,255 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
-2024-03-14 19:40:10,348 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:81]
-2024-03-14 19:40:25,220 INFO: Incorrect password. [in C:\Users\Arman\Documents\flask_project\app\auth\routes.py:72]
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\master.html", line 1, in top-level template code
+    {% extends admin_base_template %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 35, in top-level template code
+    {% block page_body %}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 42, in block 'page_body'
+    {% block main_menu %}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 44, in block 'main_menu'
+    {{ layout.menu() }}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\runtime.py", line 777, in _invoke
+    rv = self._func(*arguments)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\layout.html", line 55, in template
+    {%- if item.is_accessible() and item.is_visible() -%}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\menu.py", line 126, in is_accessible
+    return self._view.is_accessible()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\admin.py", line 13, in is_accessible
+    return session.get('user').username == 'Administrator'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'username'
+2024-03-15 20:13:32,852 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+2024-03-15 20:13:35,194 ERROR: Exception on /admin/ [GET] [in C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py:828]
+Traceback (most recent call last):
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 1463, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 872, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 870, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\app.py", line 855, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 69, in inner
+    return self._run_view(f, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 369, in _run_view
+    return fn(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 455, in index
+    return self.render(self._template)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\base.py", line 308, in render
+    return render_template(template, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Arman\Documents\flask_project\app\templates\admin\index.html", line 1, in top-level template code
+    {% extends 'admin/master.html' %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\master.html", line 1, in top-level template code
+    {% extends admin_base_template %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 35, in top-level template code
+    {% block page_body %}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 42, in block 'page_body'
+    {% block main_menu %}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\base.html", line 44, in block 'main_menu'
+    {{ layout.menu() }}
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\jinja2\runtime.py", line 777, in _invoke
+    rv = self._func(*arguments)
+         ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\templates\bootstrap2\admin\layout.html", line 55, in template
+    {%- if item.is_accessible() and item.is_visible() -%}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\venv\Lib\site-packages\flask_admin\menu.py", line 126, in is_accessible
+    return self._view.is_accessible()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Arman\Documents\flask_project\app\admin.py", line 14, in is_accessible
+    return current_user.username == 'Administrator'
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUserMixin' object has no attribute 'username'
+2024-03-15 20:15:15,392 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]
+2024-03-15 20:18:05,016 INFO: Application startup [in C:\Users\Arman\Documents\flask_project\app\__init__.py:96]

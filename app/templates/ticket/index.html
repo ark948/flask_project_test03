@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h3>Welcome to ticket system.</h3>
+    <p><a href="{{ url_for('ticket.new') }}">Submit new ticket</a></p>
+    <p><a href="#">Check a ticket for result</a></p>
+    <p><a href="{{ url_for('ticket.index') }}">Reload</a></p>
+
+{% endblock %}

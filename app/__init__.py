@@ -68,6 +68,9 @@ def create_app(config_class=Config):
     from app.cli import bp as cli_bp
     app.register_blueprint(cli_bp)
 
+    from app.ticket import bp as ticket_bp
+    app.register_blueprint(ticket_bp, url_prefix='/ticket')
+
     # shell context moved
 
     @app.before_request
@@ -84,11 +87,13 @@ def create_app(config_class=Config):
     from flask_admin.contrib.sqla import ModelView
     from app.models.user import User
     from app.models.contact import Contact
-    # admin.add_view(ModelView(User, db.session, endpoint='users_'))
-    # admin.add_view(ModelView(Contact, db.session, endpoint='contacts_'))
+    from app.models.ticket import Ticket, Ticket_Status, Ticket_Category
     # admin = Admin(votr, name='Dashboard', index_view=AdminView(Topics, db.session, url='/admin', endpoint='admin'))
     admin.add_view(AdminView(User, db.session, endpoint='users_'))
     admin.add_view(AdminView(Contact, db.session, endpoint='contacts_'))
+    admin.add_view(AdminView(Ticket, db.session, endpoint='tickets_'))
+    admin.add_view(AdminView(Ticket_Status, db.session, endpoint='ticket_statuses_'))
+    admin.add_view(AdminView(Ticket_Category, db.session, endpoint='ticket_categories_'))
 
     import logging
     from logging.handlers import SMTPHandler, RotatingFileHandler
