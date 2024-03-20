@@ -8,10 +8,11 @@ from sqlalchemy import select
 from icecream import ic
 import datetime, secrets
 
-@bp.route('/')
+@bp.route('/', methods=['GET', 'POST'])
 @login_required
 def index():
-    return render_template('ticket/index.html')
+    user_tickets = Ticket.query.filter_by(sender=current_user.id).all()
+    return render_template('ticket/index.html', tickets=user_tickets)
 
 @bp.route('/new', methods=['GET', 'POST'])
 @login_required
@@ -52,4 +53,5 @@ def new():
 @bp.route('/view/<int:confirm_code>')
 @login_required
 def view(confirm_code):
-    return render_template('ticket/view.html')
+    ticket = db.session.scalar(select(Ticket).where(Ticket.sender==current_user.id).where(Ticket.confirm_code==confirm_code))
+    return render_template('ticket/view.html', ticket=ticket)

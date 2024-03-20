@@ -7,4 +7,10 @@
     <p><a href="#">Check a ticket for result</a></p>
     <p><a href="{{ url_for('ticket.index') }}">Reload</a></p>
 
+    {% for ticket in tickets %}
+        <p>{{ loop.index }} - Title: {{ ticket.subject }} - Confirm-Code:{{ ticket.confirm_code }} <a href="{{ url_for('ticket.view', confirm_code=ticket.confirm_code) }}">Check result</a></p>
+    {% endfor %}
+
+    <p><a href="{{ url_for('ticket.index') }}">Reload</a></p>
+
 {% endblock %}
