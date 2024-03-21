@@ -1,0 +1,9 @@
+Dear {{ user.username }},
+
+To verify your email, please click on the link below:
+
+{{ url_for('auth.verify_email', token=token, _external=True) }}
+
+Sincerely,
+
+The flask_app

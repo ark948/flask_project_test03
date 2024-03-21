@@ -4,12 +4,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login_manager, Captcha
 from app.models.user import User
 from icecream import ic
-from app.auth.forms import LoginForm, RegisterForm, ProfileEditForm, PasswordChangeForm, ResetPasswordRequestForm, ResetPasswordForm
-import functools
+from app.auth.forms import LoginForm, RegisterForm, ProfileEditForm, PasswordChangeForm, ResetPasswordRequestForm, ResetPasswordForm, VerifyEmailRequestForm
 from flask_login import current_user, login_user, login_required, logout_user
 from sqlalchemy import select
-from app.email import send_email, send_password_reset_email
+from app.email import send_email, send_password_reset_email, send_verfiy_email_request_email
 from urllib.parse import urlsplit
+import datetime
 
 
 @bp.route('/')
@@ -99,9 +99,45 @@ def profile():
     passwordForm = PasswordChangeForm()
     return render_template('auth/profile.html', form1=profileForm, form2=passwordForm)
 
+@bp.route('/verify-email-request', methods=['GET', 'POST'])
+@login_required
+def verify_email_request():
+    if current_user.is_confirmed == True:
+        flash("Your email has already been verified. If you wish to change your email, you can do it in your profile page. (will require re-verification)")
+        return redirect(url_for('main.index'))
+    form = VerifyEmailRequestForm()
+    if form.validate_on_submit():
+        send_verfiy_email_request_email(current_user)
+        flash("An email with verification link was sent to your email.")
+        return redirect(url_for('main.index'))
+    return render_template('auth/verify_email_request.html', form=form)
+
+@bp.route('/verify_email/<token>', methods=['GET', 'POST'])
+@login_required
+def verify_email(token):
+    if current_user.is_confirmed == True:
+        flash("Your email has already been verified.")
+        return redirect(url_for('main.index'))
+    result = User.verify_email_token(token)
+    if result:
+        try:
+            user = User.query.get(current_user.id)
+            user.is_confirmed = True
+            user.confirmed_on = datetime.datetime.now()
+            db.session.commit()
+            flash("Your email was successfully verified. Thank you for choosing us. You can now fully use all features.")
+            return redirect(url_for('main.index'))
+        except Exception as verification_error:
+            ic(verification_error)
+            flash("Unfortunately, an error occurred during the verification of your email. Please wait 15 minutes and try again. If the issue persists, contact administrator.")
+            return redirect(url_for('main.index'))
+    return render_template('auth/verify_email.html')
+
 @bp.route('/edit-profile', methods=['POST'])
 @login_required
 def edit_profile():
+    # if user changes their email address, re-verification is required.
+    old_email = current_user.email
     ic(">[edit-profile] VIEW INVOKED.")
     user = User.query.get(current_user.id)
     # raise Exception (used to test error logging)
@@ -111,6 +147,9 @@ def edit_profile():
             return redirect(url_for('auth.profile'))
         user.username = request.form['username']
         user.email = request.form['email']
+        if user.email != old_email:
+            user.is_confirmed = False
+            user.confirmed_on = None
         db.session.commit()
         flash("Profile info updated successfully.")
     except Exception as db_integrity_error:
@@ -147,7 +186,8 @@ def change_password():
 @bp.route('/reset-password_request', methods=['GET', 'POST'])
 def reset_password_request():
     if current_user.is_authenticated:
-        return redirect(url_for("You have already logged in. If you can't remember your password, logout first and then use password reset link."))
+        flash("You have already logged in. If you can't remember your password, logout first and then use password reset link.")
+        return redirect(url_for('main.index'))
     form = ResetPasswordRequestForm()
     if form.validate_on_submit():
         # DO NOT USE TRY AND CATCH TO CHECK IF A USER EXISTS OR NOT AS A SECURITY MEASURE

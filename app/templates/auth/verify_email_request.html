@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <p>The verification link will be sent to the following email address.</p>
+    <p>If this is not your email please logout and register with the correct one, or contact system administrator.</p>
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ current_user.email }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+{% endblock %}

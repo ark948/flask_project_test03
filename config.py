@@ -9,6 +9,8 @@ load_dotenv(os.path.join(basedir, '.env'))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'some-random-secret-key' # change this later
     SECRET_CAPTCHA_KEY = 'some-random-key-for-captcha-dev'
+    UPLOAD_FOLDER = '/uploads'
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
     EXPIRE_SECONDS = 60 * 10 # 10 minutes
     CAPTCHA_IMG_FORMAT = 'JPEG' # JPEG is 3x fatser than png
     CAPTCHA_LENGTH = 6,

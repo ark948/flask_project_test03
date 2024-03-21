@@ -4,10 +4,17 @@
 
     <h3>User {{ current_user.username }}'s Profile Page</h3>
     <h4>Your info:</h4>
-    <p>{{ current_user.id }}</p>
-    <p>{{ current_user.username }}</p>
-    <p>{{ current_user.email }}</p>
-
+    <p>Your id: {{ current_user.id }}</p>
+    <p>Your username: {{ current_user.username }}</p>
+    <p>Your email: {{ current_user.email }}</p>
+    <p>Is email verified? </p>
+    {% if current_user.is_confirmed %}
+        Your email is verified.
+        Confirmed on->{{ current_user.confirmed_on }}
+    {% else %}
+        Your email is not verified
+        Click on this link to verify your email.<a href="{{ url_for('auth.verify_email_request') }}">Verify Email</a>
+    {% endif %}
     <p><h3>> To edit your username and email, use the following form:</h3></p>
     {% from "macros/_formhelpers.html" import render_field %}
     <form action="{{ url_for('auth.edit_profile') }}" method="post">

@@ -18,4 +18,14 @@ def send_password_reset_email(user):
                sender=current_app.config['ADMINS'][0],
                recipients=[user.email],
                text_body=render_template('email/reset_password.txt', user=user, token=token),
-               html_body=render_template('email/reset_password.html', user=user, token=token))
+               html_body=render_template('email/reset_password.html', user=user, token=token)
+               )
+    
+def send_verfiy_email_request_email(user):
+    token = user.get_verify_email_token()
+    send_email('[flask_app] Please verify your email',
+               sender=current_app.config['ADMINS'][0],
+               recipients=[user.email],
+               text_body=render_template('email/verify_email.txt', user=user, token=token),
+               html_body=render_template('email/verify_email.html', user=user, token=token)
+               )

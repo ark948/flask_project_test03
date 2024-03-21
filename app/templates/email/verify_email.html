@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+    <body>
+        <p>Dear {{ user.username }},</p>
+        <p>
+            To verify your email
+            <a href="{{ url_for('auth.verify_email', token=token, _external=True) }}">
+                click here
+            </a>.
+        </p>
+        <p>Sincerely,</p>
+        <p>The flask_app</p>
+    </body>
+</html>

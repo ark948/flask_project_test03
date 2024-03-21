@@ -13,6 +13,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(256), unique=True)
     password_hash = db.Column(db.String(256), nullable=False)
     phone_number = db.Column(db.String(50))
+    is_confirmed = db.Column(db.Boolean, nullable=True, default=False)
+    confirmed_on = db.Column(db.DateTime, nullable=True)
     contacts = db.relationship('Contact', backref='user')
 
 
@@ -29,6 +31,20 @@ class User(UserMixin, db.Model):
 
     def __repr__(self) -> str:
         return f'<User {self.id}>'
+    
+    def get_verify_email_token(self, expires_in=600):
+        return jwt.encode(
+            {'verify_email': self.id, 'exp': time() + expires_in},
+            current_app.config['SECRET_KEY'], algorithm='HS256')
+    
+    @staticmethod
+    def verify_email_token(token):
+        try:
+            result = jwt.decode(token, current_app.config['SECRET_KEY'],
+                                algorithms=['HS256'])['verify_email']
+        except Exception as error:
+            return error
+        return True
     
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
