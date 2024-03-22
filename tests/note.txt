@@ -1,0 +1,32 @@
+the file 'app_tests.py' uses unittest. Flask official doc uses pytest.
+
+step 1 is to create a function a class with setUp function that will generate the application using our create_app
+and then initializes a temporary database using test configs and our models.
+VERY IMPORTANT
+IMPORTANT NOTE: this file must be complete. All extensions must be initialized for this pytest command to work.
+Which is why it is crucial to comply with 'test as you go' not start testing when everything is done.
+Because of this, this projects seemds to be done. In next project, testing must be applied with every single step of the
+progress.
+
+Before going to next project, let's just check if the app_tests works...No. Gives the same error as pytest.
+But pytest was fixed by adding a __init__.py file to tests directory.
+This project is done.
+
+question: what is app.test_client()? i remember this was introduced in flask doc.
+Official documentation now seemds better.
+
+step 2 testing the main blueprint and its routes.
+testing routes is simple enough. it just needs an assertEqual and must return 200 http status code.
+
+# let's try the official doc first.
+fixture: codes that are reusable across tests
+
+flask applications can be tested using something called a client (which is on top of werkzeug's client)
+it can send get and post request to flask app without running a live server.
+
+https://flask.palletsprojects.com/en/3.0.x/tutorial/tests/ (first use this)
+
+and then this:
+
+https://flask.palletsprojects.com/en/3.0.x/testing/
+
