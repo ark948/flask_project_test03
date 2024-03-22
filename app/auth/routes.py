@@ -125,7 +125,7 @@ def verify_email(token):
             user.is_confirmed = True
             user.confirmed_on = datetime.datetime.now()
             db.session.commit()
-            flash("Your email was successfully verified. Thank you for choosing us. You can now fully use all features.")
+            flash("Successfully verified. Thank you for choosing us.")
             return redirect(url_for('main.index'))
         except Exception as verification_error:
             ic(verification_error)

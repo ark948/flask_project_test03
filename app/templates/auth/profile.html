@@ -9,10 +9,10 @@
     <p>Your email: {{ current_user.email }}</p>
     <p>Is email verified? </p>
     {% if current_user.is_confirmed %}
-        Your email is verified.
+        Your email is VERIFIED.
         Confirmed on->{{ current_user.confirmed_on }}
     {% else %}
-        Your email is not verified
+        Your email is NOT VERIFIED.
         Click on this link to verify your email.<a href="{{ url_for('auth.verify_email_request') }}">Verify Email</a>
     {% endif %}
     <p><h3>> To edit your username and email, use the following form:</h3></p>
